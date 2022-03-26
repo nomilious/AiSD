@@ -1,3 +1,6 @@
+/*
+    2.2 Дан массив целых чисел А[0..n-1]. Известно, что на интервале [0, m] значения массива строго возрастают, а на интервале [m, n-1] строго убывают. Найти m за O(log m).
+*/
 #include <iostream>
 #include <sstream>
 int find_inflection_ind(int *, int);
@@ -29,7 +32,7 @@ int run(Stream &stream) {
 }
 int test() {
     std::stringstream s1, s2, s3, s4;
-    std::stringstream s5, s6, s7, s8, s9, s10;
+    std::stringstream s5, s6, s7, s8, s9, s10, s11, s12;
 
     s1 << "10\n10 9 8 7 6 5 4 3 2 1\n";
     s2 << "10\n1 2 3 4 7 6 5 4 3 2\n";
@@ -42,6 +45,8 @@ int test() {
     s8 << "10\n1 2 3 5 6 5 3 2 1 0\n";
     s9 << "15\n0 1 2 3 4 5 6 7 8 9 7 6 5 4 3\n";
     s10 << "12\n0 1 2 3 4 15 16 70 8 3 2 1\n";
+    s11 << "12\n0 1 2 3 4 15 80 70 68 3 2 1\n";
+    s12 << "12\n0 1 2 3 4 150 80 70 68 3 2 1\n";
     std::cout
         << (run(s1) == 0) << std::endl
         << (run(s2) == 4) << std::endl
@@ -52,7 +57,9 @@ int test() {
         << (run(s7) == 4) << std::endl
         << (run(s8) == 4) << std::endl
         << (run(s9) == 9) << std::endl
-        << (run(s10) == 7) << std::endl;
+        << (run(s10) == 7) << std::endl
+        << (run(s11) == 6) << std::endl
+        << (run(s12) == 5) << std::endl;
 
     return 0;
 }
@@ -65,7 +72,7 @@ int find_inflection_ind(int *array, int size) {
     }
     if (array[0] > array[1])  // if array[0] is maximum
         i--;
-    return bin_search(array, i, std::min(i * 2, size));
+    return bin_search(array, i, std::min(i * 2, size - 1));
 }
 int bin_search(int *array, int from, int to) {
     while (from < to) {
