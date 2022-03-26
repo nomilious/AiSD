@@ -1,3 +1,7 @@
+/*
+1.2 Вернуть значение бита в числе N по его номеру K.
+Формат входных данных. Число N, номер бита K
+*/
 #include <iostream>
 #include <sstream>
 int hasOnly1Bit(int, int);
